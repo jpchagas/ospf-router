@@ -7,6 +7,7 @@
 #include<netinet/ip.h>    //Provides declarations for ip header
 #include<sys/socket.h>
 #include<arpa/inet.h>
+#include<ospf.h> // Provides declarations for ospf header
 
 void ProcessPacket(unsigned char* , int);
 void print_ip_header(unsigned char* , int);
