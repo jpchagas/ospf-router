@@ -1,0 +1,26 @@
+Oct 26 18:21:57.905 HYPERVISOR: Release 0.2.17-amd64/Linux (tag 2017072410)
+Oct 26 18:21:57.905 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 40938.
+Oct 26 18:21:57.924 HYPERVISOR: exec_cmd: hypervisor version 
+Oct 26 18:21:57.925 HYPERVISOR: exec_cmd: hypervisor working_dir /home/marcelo/Desktop/Projects/Redes_3/topologia/project-files/dynamips 
+Oct 26 18:21:57.925 GENERAL: working_dir=/home/marcelo/Desktop/Projects/Redes_3/topologia/project-files/dynamips
+Oct 26 18:21:57.926 HYPERVISOR: exec_cmd: ethsw create SW1 
+Oct 26 18:21:58.565 HYPERVISOR: exec_cmd: nio create_udp udp-dc4f1f37-6683-4715-abe2-6dc816120fb4 10004 127.0.0.1 10005 
+Oct 26 18:21:58.566 HYPERVISOR: exec_cmd: ethsw add_nio SW1 udp-dc4f1f37-6683-4715-abe2-6dc816120fb4 
+Oct 26 18:21:58.587 HYPERVISOR: exec_cmd: ethsw set_access_port SW1 udp-dc4f1f37-6683-4715-abe2-6dc816120fb4 1 
+Oct 26 18:21:59.103 HYPERVISOR: exec_cmd: nio create_udp udp-c9e5f0fc-fb0f-4f68-883d-491966e5469c 10011 127.0.0.1 10010 
+Oct 26 18:21:59.104 HYPERVISOR: exec_cmd: ethsw add_nio SW1 udp-c9e5f0fc-fb0f-4f68-883d-491966e5469c 
+Oct 26 18:21:59.109 HYPERVISOR: exec_cmd: ethsw set_access_port SW1 udp-c9e5f0fc-fb0f-4f68-883d-491966e5469c 1 
+Oct 26 18:42:27.182 HYPERVISOR: exec_cmd: ethsw remove_nio SW1 udp-c9e5f0fc-fb0f-4f68-883d-491966e5469c 
+Oct 26 18:42:27.195 HYPERVISOR: exec_cmd: nio delete udp-c9e5f0fc-fb0f-4f68-883d-491966e5469c 
+Oct 26 18:42:53.951 HYPERVISOR: exec_cmd: ethsw remove_nio SW1 udp-dc4f1f37-6683-4715-abe2-6dc816120fb4 
+Oct 26 18:42:53.954 HYPERVISOR: exec_cmd: nio delete udp-dc4f1f37-6683-4715-abe2-6dc816120fb4 
+Oct 26 18:43:42.322 HYPERVISOR: exec_cmd: nio create_udp udp-1b17e86a-7359-4df0-a2be-82824deaa042 10001 127.0.0.1 10000 
+Oct 26 18:43:42.324 HYPERVISOR: exec_cmd: ethsw add_nio SW1 udp-1b17e86a-7359-4df0-a2be-82824deaa042 
+Oct 26 18:43:42.337 HYPERVISOR: exec_cmd: ethsw set_access_port SW1 udp-1b17e86a-7359-4df0-a2be-82824deaa042 1 
+Oct 26 18:43:59.747 HYPERVISOR: exec_cmd: nio create_udp udp-6dd3145c-610d-4ce1-b686-7e46e0d6d2ff 10009 127.0.0.1 10008 
+Oct 26 18:43:59.749 HYPERVISOR: exec_cmd: ethsw add_nio SW1 udp-6dd3145c-610d-4ce1-b686-7e46e0d6d2ff 
+Oct 26 18:43:59.766 HYPERVISOR: exec_cmd: ethsw set_access_port SW1 udp-6dd3145c-610d-4ce1-b686-7e46e0d6d2ff 1 
+Oct 26 19:47:25.864 HYPERVISOR: exec_cmd: ethsw delete SW1 
+Oct 26 19:47:25.895 HYPERVISOR: exec_cmd: hypervisor stop 
+Oct 26 19:47:26.005 HYPERVISOR: Stopped.
+Oct 26 19:47:26.005 GENERAL: reset done.

@@ -1,0 +1,16 @@
+Oct 26 20:15:37.145 HYPERVISOR: Release 0.2.17-amd64/Linux (tag 2017072410)
+Oct 26 20:15:37.145 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 44765.
+Oct 26 20:15:37.149 HYPERVISOR: exec_cmd: hypervisor version 
+Oct 26 20:15:37.150 HYPERVISOR: exec_cmd: hypervisor working_dir /media/joao/E596-0C73/topologia-trab-redes-3/project-files/dynamips 
+Oct 26 20:15:37.150 GENERAL: working_dir=/media/joao/E596-0C73/topologia-trab-redes-3/project-files/dynamips
+Oct 26 20:15:37.150 HYPERVISOR: exec_cmd: ethsw create SW1 
+Oct 26 20:15:37.508 HYPERVISOR: exec_cmd: nio create_udp udp-94a733f8-5ac1-40b8-b00f-1433a8b45457 10003 127.0.0.1 10002 
+Oct 26 20:15:37.509 HYPERVISOR: exec_cmd: ethsw add_nio SW1 udp-94a733f8-5ac1-40b8-b00f-1433a8b45457 
+Oct 26 20:15:37.522 HYPERVISOR: exec_cmd: ethsw set_access_port SW1 udp-94a733f8-5ac1-40b8-b00f-1433a8b45457 1 
+Oct 26 20:15:37.628 HYPERVISOR: exec_cmd: nio create_udp udp-d19c91d2-d2b3-4af5-a2cf-1e46e246c6da 10007 127.0.0.1 10006 
+Oct 26 20:15:37.628 HYPERVISOR: exec_cmd: ethsw add_nio SW1 udp-d19c91d2-d2b3-4af5-a2cf-1e46e246c6da 
+Oct 26 20:15:37.642 HYPERVISOR: exec_cmd: ethsw set_access_port SW1 udp-d19c91d2-d2b3-4af5-a2cf-1e46e246c6da 1 
+Oct 26 20:17:45.714 HYPERVISOR: exec_cmd: ethsw delete SW1 
+Oct 26 20:17:45.749 HYPERVISOR: exec_cmd: hypervisor stop 
+Oct 26 20:17:45.795 HYPERVISOR: Stopped.
+Oct 26 20:17:45.795 GENERAL: reset done.
