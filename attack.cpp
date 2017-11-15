@@ -4,6 +4,7 @@
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <ospf.h>
 
 #define MAC_ADDR_LEN 6
 typedef unsigned char MacAddress[MAC_ADDR_LEN];
