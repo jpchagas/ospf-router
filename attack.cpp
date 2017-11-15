@@ -4,22 +4,8 @@
 #include <arpa/inet.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <ospf.h>
-
-#define MAC_ADDR_LEN 6
-typedef unsigned char MacAddress[MAC_ADDR_LEN];
-
-void MontarHeaderIp(){
-
-}
-
-void MontarHeaderOspf(){
-
-}
-
-void MontarHeaderHello(){
-
-}
+#include "helper/ip.hpp"
+#include "helper/ospf.hpp"
 
 void MontarHeaderDDB(){
 
@@ -30,23 +16,30 @@ void MontarHeaderLSAAck(){
 }
 
 
-void EnviaMensagemHello(){
-	MontarHeaderIp();
-	MontarHeaderOspf();
-	MontarHeaderHello();
+void EnviaMensagemHello(MacAddress mac_L, MacAddress mac_D, int primeiraMensagem,
+	struct sockaddr_ll* destAddr, struct HELLO_HEADER* hello,
+	struct ip* ipHeader,
+	struct OSPF_HEADER* ospf, struct OSPF_HEADER_CS_DBD* ospCSDbd, struct OSPF_HEADER_CS_LSU* ospCSLsu, struct LSA_HEADER_ACK* lsuAck,
+	struct LLS_HEADER* llsHeader,
+	char* ipBroadcast, char* ipLocal, char* ipRoteador, char* ipMulticast,
+	char* buffer, short int* etherTypeT){
+	MontarHeaderHello(mac_L, mac_D, primeiraMensagem, destAddr, hello,
+		ipHeader, ospf, ospCSDbd, ospCSLsu, lsuAck, llsHeader,
+		ipBroadcast, ipLocal, ipRoteador, ipMulticast,
+		buffer, etherTypeT);
 	// sendto();
 }
 
 void EnviaMensagemDbd(){
-	MontarHeaderIp();
-	MontarHeaderOspf();
+	// MontarHeaderIp();
+	// MontarHeaderOspf();
 	MontarHeaderDDB();
 	// sendto();
 }
 
 void EnviaMensagemLSAAck(){
-	MontarHeaderIp();
-	MontarHeaderOspf();
+	// MontarHeaderIp();
+	// MontarHeaderOspf();
 	MontarHeaderLSAAck();
 	// sendto();
 }
@@ -68,7 +61,7 @@ int main()
 
 	int attempts = 0;
 	// EnviaMensagemHello(macLocal, macMulticast, 1);
-	EnviaMensagemHello();
+	// EnviaMensagemHello();
 	while(attempts < 10)
 	{
 		// EnviaMensagemDbd(macLocal, macRoteador, 7);
