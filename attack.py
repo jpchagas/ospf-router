@@ -2,9 +2,10 @@ import socket, sys
 from struct import *
 import time
 
+global source_ip = '172.16.4.2'
+global dest_ip = '172.16.4.1'
+
 def __init__(self):
-    source_ip = '172.16.4.2'
-    dest_ip = '172.16.4.1'
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     except socket.error , msg:
@@ -52,24 +53,24 @@ def build_ospf_header(packettype, packetlen, checksum):
     ospf_version = 2
     ospf_type = packettype
     ospf_len = packetlen
-    ospf_routerid = socket.inet_aton(rid)
-    ospf_areaid = socket.inet_aton(aid)
+    ospf_routerid = ip2int(rid)
+    ospf_areaid = ip2int(aid)
     ospf_chksum = checksum
     ospf_authtype = 0
     ospf_auth = 0
-    ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, int(ospf_routerid), int(ospf_areaid), ospf_chksum, ospf_authtype, ospf_auth)
+    ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth)
     return ospf_header
 def build_ospf_hello_header():
     m = '255.255.255.0'
     d = '172.16.4.1'
     b = '0.0.0.0'
-    mask = socket.inet_aton(m)
+    mask = ip2int(m)
     helloint = 10
     options = 2
     priority = 255
     deadint = 40
-    dr = socket.inet_aton(d)
-    bdr = socket.inet_aton(b)
+    dr = ip2int(d)
+    bdr = ip2int(b)
     neighbor = 0
     ospf_hello_header = pack('!IHBBIIII', mask, helloint, options, priority, deadint, dr, bdr, neighbor)
     return ospf_hello_header
@@ -89,60 +90,36 @@ def build_ospf_dbd_header(sequencenumber):
 
 def enviaMensagemHello(packettype, packetlen, sequencenumber):
     packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_hello_header()
-    checksum = calcChecksum(packet)
+    ck = checksum(packet)
     packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen, checksum) + build_ospf_hello_header()
     s.sendto(packet, (dest_ip , 0 ))
 def enviaMensagemDbd(packettype, packetlen, sequencenumber):
     packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header()
-    checksum = calcChecksum(packet)
+    ck = checksum(packet)
     packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,checksum) + build_ospf_dbd_header(sequencenumber)
     s.sendto(packet, (dest_ip , 0 ))
 
-# def checksum(msg):
-#     s = 0
-#
-#     # loop taking 2 characters at a time
-#     for i in range(0, len(msg), 2):
-#         w = ord(msg[i]) + (ord(msg[i+1]) << 8 )
-#         s = s + w
-#
-#     s = (s>>16) + (s & 0xffff);
-#     s = s + (s >> 16);
-#
-#     #complement and mask to 4 byte short
-#     s = ~s & 0xffff
-#
-#     return s
 
-# Taken from
-# https://github.com/h0rac/network-scripts/blob/master/ospf-checksum.py
-# Author: Grzegorz Wypych
-def calcChecksum(pktOSPF):
-    pktOSPF = pktOSPF[:56]
-    fields = struct.unpack("!28H",pktOSPF)
-    fields = list(fields)
-    #print "--------OSPF Checksum calulcation---------"
-    #print "  "
-    #print "All OSPF hello header fields (header OSPF + hello OSPF):",[hex(f) for f in fields]
-    sum = 0
-    #print "First zeroize current checksum and auth fields for calculation: "
-    fields[6] = 0
-    fields[8] = 0
-    fields[9] = 0
-    #print "Next add all remains field and convert to hex"
-    for f in fields:
-        sum += f
-    sum = hex(sum)
-    #print "Sum of OSPF packet field in hex:",sum
-    compl = "0x"+sum[-4:]
-    carry = sum[:len(sum)-4]
-    #print "last 4 bytes of sum:",compl
-    #print "Carry is:",carry
-    compl = int(compl,16) + int(carry,16)
-    #print "Sum of carry and last 4 bytes:",hex(compl)
-    checksum = compl ^ 0xffff
-    #print "Correct checksum of OSPF header  after bit flipping:",hex(checksum)
-    return hex(checksum)
+def checksum(msg):
+    s = 0
+
+    # loop taking 2 characters at a time
+    for i in range(0, len(msg), 2):
+        if i>=9 or i<=12:
+            pass
+        w = ord(msg[i]) + (ord(msg[i+1]) << 8 )
+        s = s + w
+
+    s = (s>>16) + (s & 0xffff);
+    s = s + (s >> 16);
+
+    #complement and mask to 4 byte short
+    s = ~s & 0xffff
+
+    return s
+
+def ip2int(addr):
+    return unpack("!I", socket.inet_aton(addr))[0]
 
 
 if __name__ == '__main__':
