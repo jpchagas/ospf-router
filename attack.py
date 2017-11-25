@@ -1,6 +1,5 @@
-import socket, sys
+import socket, sys, time, threading
 from struct import *
-import time
 
 # def __init__(self):
 #     try:
@@ -9,9 +8,12 @@ import time
 #         print 'Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
 #         sys.exit()
 
+source_ip = '172.16.4.2'
+dest_ip = '172.16.4.1'
+sqn = 40000
 
 def begin():
-    sqn = 40000
+    global sqn
     print "Enviando Mensagem Hello OSPF"
     enviaMensagemHello(1, 48, sqn)
     i = 0
@@ -27,14 +29,14 @@ def begin():
         i+=1
         time.sleep(1)
 
+    keepAlive()
 
 	 #enviaMensagemLSAAck()
      #print 'End.\n'
 
 def build_ip_header(packetid):
-    source_ip = '172.16.4.2'
-    dest_ip = '172.16.4.1'
-
+    global source_ip
+    global dest_ip
     # ip header fields
     ip_ihl = 5
     ip_ver = 4
@@ -94,17 +96,17 @@ def build_ospf_dbd_header(sequencenumber, dbvalormestre):
     return ospf_dbd_header
 
 def enviaMensagemHello(packettype, packetlen, sequencenumber):
+    global dest_ip
     packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_hello_header()
     ck = checksum(packet)
     packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen, ck) + build_ospf_hello_header()
-    dest_ip = '172.16.4.1'
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 def enviaMensagemDbd(packettype, packetlen, sequencenumber, dbvalormestre):
+    global dest_ip
     packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
     ck = checksum(packet)
     packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,ck) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
-    dest_ip = '172.16.4.1'
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 
@@ -139,6 +141,12 @@ def swap32(i):
 def ip2int(addr):
     return unpack("!I", socket.inet_aton(addr))[0]
 
+def keepAlive():
+    global sqn
+    threading.Timer(10.0, keepAlive).start()
+    print "Sending keep alive"
+    sqn = sqn + 1
+    enviaMensagemHello(1, 48, sqn)
 
 if __name__ == '__main__':
     begin()
