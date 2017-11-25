@@ -54,7 +54,7 @@ def build_ip_header(packetid):
     ip_header = pack('!BBHHHBBH4s4s' , ip_ihl_ver, ip_tos, ip_tot_len, ip_id, ip_frag_off, ip_ttl, ip_proto, ip_check, ip_saddr, ip_daddr)
     return ip_header
 def build_ospf_header(packettype, packetlen, checksuma):
-    rid = '172.16.4.254'
+    rid = '172.16.4.2'
     aid = '0.0.0.0'
     ospf_version = 2
     ospf_type = packettype
