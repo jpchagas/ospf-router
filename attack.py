@@ -1,5 +1,6 @@
 import socket, sys
 from struct import *
+import time
 
 def __init__(self):
     #create a raw socket
@@ -10,45 +11,32 @@ def __init__(self):
         sys.exit()
 
 def begin():
-    #socketEnvio = 0;
-
-	#MacAddress macLocal = {0xa4, 0x1f, 0x72, 0xf5, 0x90, 0x80};
-	#MacAddress macMulticast = {0x01, 0x00, 0x5e, 0x00, 0x00, 0x05};
-	#MacAddress macRoteador = {0x50, 0x3d, 0xe5, 0xd9, 0x07, 0xb8};
-
-
-	#if((socketEnvio = socket(PF_PACKET, SOCK_RAW, htons(ETH_P_ALL))) < 0)
-	#{
-	#	printf("Erro na criacao do socket.\n");
-	#	exit(1);
-	#}
-
-	int attempts = 0;
-
-	enviaMensagemHello();
-	while(attempts < 10)
+    sqn = 65000
+	enviaMensagemHello(1, 44)
+	while(true)
 	{
-		enviaMensagemDbd();
+        sqn  = sqn + 1
+		enviaMensagemDbd(2, 32 , sqn)
+        time.sleep(10)
 	}
-		#TODO: SLEEP DE 30 EM 30 SEGUNDOS E MANDAR UM PACOTE DDB. Com mensagem LSAACK DEPOIS
 
-	 #EnviaMensagemLSAAck();
+	 #enviaMensagemLSAAck()
 	 printf("End.\n");
 
-def build_ip_header():
-    source_ip = '192.168.1.101'
-    dest_ip = '192.168.1.1' # or socket.gethostbyname('www.google.com')
+def build_ip_header(packetid):
+    source_ip = '172.16.4.2'
+    dest_ip = '172.16.4.1' # or socket.gethostbyname('www.google.com')
 
     # ip header fields
-    ip_ihl =
-    ip_ver =
-    ip_tos =
-    ip_tot_len =   # kernel will fill the correct total length
-    ip_id =    #Id of this packet
-    ip_frag_off =
-    ip_ttl =
+    ip_ihl = 5
+    ip_ver = 4
+    ip_tos = 192
+    ip_tot_len = 0  # kernel will fill the correct total length
+    ip_id = packetid   #Id of this packet
+    ip_frag_off = 0
+    ip_ttl = 255
     ip_proto = socket.IPPROTO_TCP
-    ip_check =     # kernel will fill the correct checksum
+    ip_check = 0    # kernel will fill the correct checksum
     ip_saddr = socket.inet_aton ( source_ip )   #Spoof the source ip address if you want to
     ip_daddr = socket.inet_aton ( dest_ip )
 
@@ -57,60 +45,53 @@ def build_ip_header():
     # the ! in the pack format string means network order
     ip_header = pack('!BBHHHBBH4s4s' , ip_ihl_ver, ip_tos, ip_tot_len, ip_id, ip_frag_off, ip_ttl, ip_proto, ip_check, ip_saddr, ip_daddr)
     return ip_header
-def  build_ospf_header():
-    ospf_version =
-    ospf_type =
-    ospf_len =
-    ospf_routerid =
-    ospf_areaid =
+def build_ospf_header(packettype, packetlen):
+    rid = '172.16.4.254'
+    aid = '0.0.0.0'
+    ospf_version = 2
+    ospf_type = packettype
+    ospf_len = packetlen
+    ospf_routerid = socket.inet_aton ( rid )
+    ospf_areaid = socket.inet_aton ( aid )
     ospf_chksum =
     ospf_authtype = 0
     ospf_auth = 0
-    ospf_messagebody = 0
-    ospf_header = pack('!BBHHHBBH4s4s' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth, ospf_messagebody)
+    ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth)
     return ospf_header
 def build_ospf_hello_header():
-	# inet_pton (AF_INET, ipBroadcast, &(hello.mask));
-	mask = #ipBroadcast
-	helloint = #htons(10);
-	options = #18;
-	priority = #1;
-	deadint = #ntohl(40);
-    #  Na primeria mensagem não há roteador backup
-	if(primeiraMensagem)
-		# inet_pton (AF_INET, "0.0.0.0", &(hello.dr));
-		dr = #0.0.0.0
-		# inet_pton (AF_INET, "0.0.0.0", &(hello.bdr));
-		bdr = #0.0.0.0
-	else
-		# inet_pton (AF_INET, ipRoteador, &(hello.dr));
-		dr = #ipRoteador
-		# inet_pton (AF_INET, ipLocal, &(hello.bdr));
-		bdr = #ipLocal
-	# inet_pton (AF_INET, ipRoteador, &(hello.neighbor[0]));
-	neighbor = #ipRoteador
-    ospf_hello_header = pack('!BBHHHBBH4s4s' , mask,helloint)
+    m = '255.255.255.0'
+    d = '172.16.4.1'
+    b = '0.0.0.0'
+	mask = socket.inet_aton(m)
+	helloint = 10
+	options = 2
+	priority = 255
+	deadint = 40
+	dr = socket.inet_aton(d)
+	bdr = socket.inet_aton(b)
+	neighbor = 0
+    ospf_hello_header = pack('!IHBBIIII', mask, helloint, options, priority, deadint, dr, bdr, neighbor)
     return ospf_hello_header
-def build_ospf_dbd_header():
+def build_ospf_dbd_header(sequencenumber):
 
 	# Configuração inicial DBD
-	mtu = #htons(1500);
-	options = #82;
-	dbdescript = #7;
-	ddsequence = #ntohl(seqDbScript);
+	mtu = 1500 #htons(1500);
+	options = 2 #82;
+	dbdescript = 7 #7;
+	ddsequence = sequencenumber + 1#ntohl(seqDbScript);
 
 	#configuracoes feitas no EnviaMensagemDbd
 		#Configuração pacote Bdb
 		#ddsequence = #htonl(seqDbScript);
 		#dbdescript = #dbDescription;
-    ospf_hello_header = pack('!BBHHHBBH4s4s' , )
+    ospf_hello_header = pack('!HBBI' , mtu,options,dbdescript,ddsequence)
     return ospf_dbd_header
 
-def enviaMensagemHello():
-    packet = build_ip_header() + build_ospf_header() + build_ospf_hello_header()
+def enviaMensagemHello(packettype, packetlen):
+    packet = build_ip_header() + build_ospf_header(packettype, packetlen) + build_ospf_hello_header()
     s.sendto(packet, (dest_ip , 0 ))
-def enviaMensagemDbd():
-    packet = build_ip_header() + build_ospf_header() + build_ospf_dbd_header()
+def enviaMensagemDbd(packettype, packetlen, sequencenumber):
+    packet = build_ip_header() + build_ospf_header(packettype, packetlen) + build_ospf_dbd_header(sequencenumber)
     s.sendto(packet, (dest_ip , 0 ))
 def enviaMensagemLSAAck():
     packet = build_ip_header() + build_ospf_header() + build_ospf_lsaack_header()
@@ -136,4 +117,4 @@ def checksum(msg):
 if __name__ == '__main__':
     """ Código do módulo secundário
     """
-begin()
+    begin()
