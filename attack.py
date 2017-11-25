@@ -82,9 +82,7 @@ def build_ospf_hello_header():
     deadint = 40
     dr = ip2int(d)
     bdr = ip2int(b)
-    print neighbor
     ospf_hello_header = pack('!IHBBIIII', mask, helloint, options, priority, deadint, dr, bdr, dr)
-    print ospf_hello_header
     return ospf_hello_header
 def build_ospf_dbd_header(sequencenumber, dbvalormestre):
     # Configuracao inicial DBD
