@@ -19,6 +19,7 @@ def begin():
         sqn  = sqn + 1
         print "Enviando Mensagem DBD OSPF"
         enviaMensagemDbd(2, 32 , sqn)
+        i++
         # time.sleep(10)
 
 
