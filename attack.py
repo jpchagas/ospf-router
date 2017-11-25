@@ -13,7 +13,7 @@ import time
 def begin():
     sqn = 40000
     print "Enviando Mensagem Hello OSPF"
-    enviaMensagemHello(1, 44, sqn)
+    enviaMensagemHello(1, 48, sqn)
     i = 0
     while(i<10):
         sqn  = sqn + 1
