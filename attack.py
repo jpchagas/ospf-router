@@ -2,9 +2,6 @@ import socket, sys
 from struct import *
 import time
 
-global source_ip = '172.16.4.2'
-global dest_ip = '172.16.4.1'
-
 def __init__(self):
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
@@ -26,8 +23,8 @@ def begin():
      #print 'End.\n'
 
 def build_ip_header(packetid):
-    # source_ip = '172.16.4.2'
-    # dest_ip = '172.16.4.1'
+    source_ip = '172.16.4.2'
+    dest_ip = '172.16.4.1'
 
     # ip header fields
     ip_ihl = 5
@@ -47,15 +44,20 @@ def build_ip_header(packetid):
     # the ! in the pack format string means network order
     ip_header = pack('!BBHHHBBH4s4s' , ip_ihl_ver, ip_tos, ip_tot_len, ip_id, ip_frag_off, ip_ttl, ip_proto, ip_check, ip_saddr, ip_daddr)
     return ip_header
-def build_ospf_header(packettype, packetlen, checksum):
+def build_ospf_header(packettype, packetlen, checksuma):
+    print packettype
+    print packetlen
+    print checksuma
     rid = '172.16.4.254'
     aid = '0.0.0.0'
     ospf_version = 2
     ospf_type = packettype
     ospf_len = packetlen
     ospf_routerid = ip2int(rid)
+    print ospf_routerid
     ospf_areaid = ip2int(aid)
-    ospf_chksum = checksum
+    print ospf_areaid
+    ospf_chksum = checksuma
     ospf_authtype = 0
     ospf_auth = 0
     ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth)
@@ -102,7 +104,6 @@ def enviaMensagemDbd(packettype, packetlen, sequencenumber):
 
 def checksum(msg):
     s = 0
-
     # loop taking 2 characters at a time
     for i in range(0, len(msg), 2):
         if i>=9 or i<=12:
