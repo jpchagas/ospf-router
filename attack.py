@@ -18,9 +18,9 @@ def begin():
     while(i<10):
         sqn  = sqn + 1
         print "Enviando Mensagem DBD OSPF"
-        if i=0:
+        if i==0:
             enviaMensagemDbd(2, 32 , sqn, 7)
-        elif i=9:
+        elif i==9:
             enviaMensagemDbd(2, 32 , sqn, 1)
         else:
             enviaMensagemDbd(2, 32 , sqn, 3)
@@ -107,7 +107,7 @@ def enviaMensagemHello(packettype, packetlen, sequencenumber):
     dest_ip = '172.16.4.1'
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
-def enviaMensagemDbd(packettype, packetlen, sequencenumber):
+def enviaMensagemDbd(packettype, packetlen, sequencenumber, dbvalormestre):
     packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
     ck = checksum(packet)
     packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,ck) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
