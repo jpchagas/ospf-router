@@ -123,7 +123,11 @@ def checksum(msg):
 
     #complement and mask to 4 byte short
     s = ~s & 0xffff
-    print s
+    alfa = s & 0xff00
+    beta = s & 0x00ff
+    beta = beta << 16
+    alfa = alfa >> 16
+    s = beta | alfa
     return s
 
 def ip2int(addr):
