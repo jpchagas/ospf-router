@@ -141,6 +141,4 @@ def ip2int(addr):
 
 
 if __name__ == '__main__':
-    """ Codigo do modulo secundario
-    """
     begin()
