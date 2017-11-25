@@ -52,12 +52,12 @@ def build_ospf_header(packettype, packetlen, checksum):
     ospf_version = 2
     ospf_type = packettype
     ospf_len = packetlen
-    ospf_routerid = socket.inet_aton ( rid )
-    ospf_areaid = socket.inet_aton ( aid )
+    ospf_routerid = socket.inet_aton(rid)
+    ospf_areaid = socket.inet_aton(aid)
     ospf_chksum = checksum
     ospf_authtype = 0
     ospf_auth = 0
-    ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth)
+    ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, int(ospf_routerid), int(ospf_areaid), ospf_chksum, ospf_authtype, ospf_auth)
     return ospf_header
 def build_ospf_hello_header():
     m = '255.255.255.0'
