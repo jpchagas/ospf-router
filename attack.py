@@ -127,7 +127,7 @@ def checksum(msg):
     beta = s & 0x00ff
     beta = beta << 16
     alfa = alfa >> 16
-    s = beta | alfa
+    s = (beta | alfa) & 0xffff
     return s
 
 def ip2int(addr):
