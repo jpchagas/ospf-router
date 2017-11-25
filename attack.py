@@ -12,11 +12,14 @@ import time
 
 def begin():
     sqn = 65000
+    print "Enviando Mensagem Hello OSPF"
     enviaMensagemHello(1, 44, sqn)
-    while(True):
+    i = 0
+    while(i<10):
         sqn  = sqn + 1
+        print "Enviando Mensagem DBD OSPF"
         enviaMensagemDbd(2, 32 , sqn)
-        time.sleep(10)
+        # time.sleep(10)
 
 
 	 #enviaMensagemLSAAck()
