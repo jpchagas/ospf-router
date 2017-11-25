@@ -123,12 +123,18 @@ def checksum(msg):
 
     #complement and mask to 4 byte short
     s = ~s & 0xffff
-    alfa = s & 0xff00
-    beta = s & 0x00ff
-    beta = beta << 16
-    alfa = alfa >> 16
-    s = (beta | alfa) & 0xffff
+    # alfa = s & 0xff00
+    # beta = s & 0x00ff
+    # beta = beta
+    # alfa = alfa
+    # s = (beta | alfa) & 0xffff
+    s = swap32(s)
+    s = (s >> 16)
+    print hex(s)
     return s
+
+def swap32(i):
+    return unpack("<I", pack(">I", i))[0]
 
 def ip2int(addr):
     return unpack("!I", socket.inet_aton(addr))[0]
