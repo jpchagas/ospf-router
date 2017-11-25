@@ -20,7 +20,7 @@ def begin():
         print "Enviando Mensagem DBD OSPF"
         enviaMensagemDbd(2, 32 , sqn)
         i+=1
-        # time.sleep(10)
+        time.sleep(1)
 
 
 	 #enviaMensagemLSAAck()
