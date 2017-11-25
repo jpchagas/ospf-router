@@ -18,7 +18,12 @@ def begin():
     while(i<10):
         sqn  = sqn + 1
         print "Enviando Mensagem DBD OSPF"
-        enviaMensagemDbd(2, 32 , sqn)
+        if i=0:
+            enviaMensagemDbd(2, 32 , sqn, 7)
+        elif i=9:
+            enviaMensagemDbd(2, 32 , sqn, 1)
+        else:
+            enviaMensagemDbd(2, 32 , sqn, 3)
         i+=1
         time.sleep(1)
 
@@ -77,14 +82,15 @@ def build_ospf_hello_header():
     deadint = 40
     dr = ip2int(d)
     bdr = ip2int(b)
-    neighbor = 0
+    n = '172.16.4.1'
+    neighbor = ip2int(n)
     ospf_hello_header = pack('!IHBBIIII', mask, helloint, options, priority, deadint, dr, bdr, neighbor)
     return ospf_hello_header
-def build_ospf_dbd_header(sequencenumber):
+def build_ospf_dbd_header(sequencenumber, dbvalormestre):
     # Configuracao inicial DBD
     mtu = 1500 #htons(1500);
     options = 2 #82;
-    dbdescript = 7 #7;
+    dbdescript = dbvalormestre #7;
     ddsequence = sequencenumber + 1
     #ntohl(seqDbScript);
     #configuracoes feitas no EnviaMensagemDbd
@@ -102,9 +108,9 @@ def enviaMensagemHello(packettype, packetlen, sequencenumber):
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 def enviaMensagemDbd(packettype, packetlen, sequencenumber):
-    packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header(sequencenumber)
+    packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
     ck = checksum(packet)
-    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,ck) + build_ospf_dbd_header(sequencenumber)
+    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,ck) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
     dest_ip = '172.16.4.1'
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
