@@ -2,18 +2,18 @@ import socket, sys
 from struct import *
 import time
 
-def __init__(self):
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
-    except socket.error , msg:
-        print 'Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
-        sys.exit()
+# def __init__(self):
+#     try:
+#         s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
+#     except socket.error , msg:
+#         print 'Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+#         sys.exit()
 
 
 def begin():
     sqn = 65000
     enviaMensagemHello(1, 44, sqn)
-    while(true):
+    while(True):
         sqn  = sqn + 1
         enviaMensagemDbd(2, 32 , sqn)
         time.sleep(10)
@@ -87,18 +87,22 @@ def build_ospf_dbd_header(sequencenumber):
     #Configuracao pacote Bdb
     #ddsequence = #htonl(seqDbScript);
     #dbdescript = #dbDescription;
-    ospf_hello_header = pack('!HBBI' , mtu,options,dbdescript, ddsequence)
+    ospf_dbd_header = pack('!HBBI' , mtu,options,dbdescript, ddsequence)
     return ospf_dbd_header
 
 def enviaMensagemHello(packettype, packetlen, sequencenumber):
     packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_hello_header()
     ck = checksum(packet)
-    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen, checksum) + build_ospf_hello_header()
+    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen, ck) + build_ospf_hello_header()
+    dest_ip = '172.16.4.1'
+    s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 def enviaMensagemDbd(packettype, packetlen, sequencenumber):
-    packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header()
+    packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header(sequencenumber)
     ck = checksum(packet)
-    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,checksum) + build_ospf_dbd_header(sequencenumber)
+    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,ck) + build_ospf_dbd_header(sequencenumber)
+    dest_ip = '172.16.4.1'
+    s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 
 
