@@ -38,7 +38,7 @@ def build_ip_header(packetid):
     ip_id = packetid   #Id of this packet
     ip_frag_off = 0
     ip_ttl = 255
-    ip_proto = socket.IPPROTO_TCP
+    ip_proto = 89
     ip_check = 0    # kernel will fill the correct checksum
     ip_saddr = socket.inet_aton ( source_ip )   #Spoof the source ip address if you want to
     ip_daddr = socket.inet_aton ( dest_ip )
