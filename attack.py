@@ -54,18 +54,13 @@ def build_ip_header(packetid):
     ip_header = pack('!BBHHHBBH4s4s' , ip_ihl_ver, ip_tos, ip_tot_len, ip_id, ip_frag_off, ip_ttl, ip_proto, ip_check, ip_saddr, ip_daddr)
     return ip_header
 def build_ospf_header(packettype, packetlen, checksuma):
-    print packettype
-    print packetlen
-    print checksuma
     rid = '172.16.4.254'
     aid = '0.0.0.0'
     ospf_version = 2
     ospf_type = packettype
     ospf_len = packetlen
     ospf_routerid = ip2int(rid)
-    print ospf_routerid
     ospf_areaid = ip2int(aid)
-    print ospf_areaid
     ospf_chksum = checksuma
     ospf_authtype = 0
     ospf_auth = 0
@@ -128,7 +123,7 @@ def checksum(msg):
 
     #complement and mask to 4 byte short
     s = ~s & 0xffff
-
+    print s
     return s
 
 def ip2int(addr):
