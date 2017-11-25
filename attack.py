@@ -11,7 +11,7 @@ import time
 
 
 def begin():
-    sqn = 65000
+    sqn = 40000
     print "Enviando Mensagem Hello OSPF"
     enviaMensagemHello(1, 44, sqn)
     i = 0
