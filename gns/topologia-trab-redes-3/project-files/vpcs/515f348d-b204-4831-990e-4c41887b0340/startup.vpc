@@ -1,2 +1,2 @@
-set pcname PC2
+set pcname PC.2
 ip 172.16.2.2 172.16.2.1 24
