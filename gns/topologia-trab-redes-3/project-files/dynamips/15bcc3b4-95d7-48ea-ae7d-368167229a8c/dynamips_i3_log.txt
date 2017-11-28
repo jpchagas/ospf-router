@@ -1,0 +1,19 @@
+Nov 27 20:48:22.667 HYPERVISOR: Release 0.2.17-amd64/Linux (tag 2017072410)
+Nov 27 20:48:22.667 HYPERVISOR: Started on IP = 127.0.0.1, TCP port = 43717.
+Nov 27 20:48:22.677 HYPERVISOR: exec_cmd: hypervisor version 
+Nov 27 20:48:22.677 HYPERVISOR: exec_cmd: hypervisor working_dir /home/lasaro/repos/ospf-router/gns/topologia-trab-redes-3/project-files/dynamips 
+Nov 27 20:48:22.678 GENERAL: working_dir=/home/lasaro/repos/ospf-router/gns/topologia-trab-redes-3/project-files/dynamips
+Nov 27 20:48:22.678 HYPERVISOR: exec_cmd: ethsw create Ethernetswitch-1 
+Nov 27 20:48:22.938 HYPERVISOR: exec_cmd: nio create_udp udp-c25536fb-c912-46e8-8209-1cb7e250e62f 10000 127.0.0.1 10001 
+Nov 27 20:48:22.939 HYPERVISOR: exec_cmd: ethsw add_nio Ethernetswitch-1 udp-c25536fb-c912-46e8-8209-1cb7e250e62f 
+Nov 27 20:48:22.946 HYPERVISOR: exec_cmd: ethsw set_access_port Ethernetswitch-1 udp-c25536fb-c912-46e8-8209-1cb7e250e62f 1 
+Nov 27 20:48:23.512 HYPERVISOR: exec_cmd: nio create_udp udp-7c444919-08a1-495f-8bed-c904bd7175aa 10027 127.0.0.1 10026 
+Nov 27 20:48:23.513 HYPERVISOR: exec_cmd: ethsw add_nio Ethernetswitch-1 udp-7c444919-08a1-495f-8bed-c904bd7175aa 
+Nov 27 20:48:23.529 HYPERVISOR: exec_cmd: ethsw set_access_port Ethernetswitch-1 udp-7c444919-08a1-495f-8bed-c904bd7175aa 1 
+Nov 27 20:48:23.600 HYPERVISOR: exec_cmd: nio create_udp udp-f9f67780-e3b5-49aa-9a25-aee97faf6aa9 10029 127.0.0.1 10028 
+Nov 27 20:48:23.600 HYPERVISOR: exec_cmd: ethsw add_nio Ethernetswitch-1 udp-f9f67780-e3b5-49aa-9a25-aee97faf6aa9 
+Nov 27 20:48:23.609 HYPERVISOR: exec_cmd: ethsw set_access_port Ethernetswitch-1 udp-f9f67780-e3b5-49aa-9a25-aee97faf6aa9 1 
+Nov 27 20:55:58.033 HYPERVISOR: exec_cmd: ethsw delete Ethernetswitch-1 
+Nov 27 20:55:58.164 HYPERVISOR: exec_cmd: hypervisor stop 
+Nov 27 20:55:58.628 HYPERVISOR: Stopped.
+Nov 27 20:55:58.628 GENERAL: reset done.

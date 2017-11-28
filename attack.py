@@ -8,35 +8,35 @@ from struct import *
 #         print 'Socket could not be created. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
 #         sys.exit()
 
-source_ip = '172.16.4.2'
-dest_ip = '172.16.4.1'
 sqn = 40000
 
 def begin():
     global sqn
     print "Enviando Mensagem Hello OSPF"
-    enviaMensagemHello(1, 48, sqn)
+    enviaMensagemHello(1, 48, sqn, '172.16.4.2', '172.16.4.1', '172.16.4.2')
+    enviaMensagemHello(1, 48, sqn, '172.16.7.2', '172.16.7.1', '172.16.4.2')
     i = 0
     while(i<10):
         sqn  = sqn + 1
         print "Enviando Mensagem DBD OSPF"
         if i==0:
-            enviaMensagemDbd(2, 32 , sqn, 7)
+            enviaMensagemDbd(2, 32 , sqn, 7, '172.16.4.2', '172.16.4.1', '172.16.4.2')
+            enviaMensagemDbd(2, 32 , sqn, 7, '172.16.7.2', '172.16.7.1', '172.16.4.2')
         elif i==9:
-            enviaMensagemDbd(2, 32 , sqn, 1)
+            enviaMensagemDbd(2, 32 , sqn, 1, '172.16.4.2', '172.16.4.1', '172.16.4.2')
+            enviaMensagemDbd(2, 32 , sqn, 1, '172.16.7.2', '172.16.7.1', '172.16.4.2')
         else:
-            enviaMensagemDbd(2, 32 , sqn, 3)
+            enviaMensagemDbd(2, 32 , sqn, 3, '172.16.4.2', '172.16.4.1', '172.16.4.2')
+            enviaMensagemDbd(2, 32 , sqn, 3, '172.16.7.2', '172.16.7.1', '172.16.4.2')
         i+=1
         time.sleep(1)
 
-    keepAlive()
+    # keepAlive()
 
 	 #enviaMensagemLSAAck()
      #print 'End.\n'
 
-def build_ip_header(packetid):
-    global source_ip
-    global dest_ip
+def build_ip_header(packetid, source_ip, dest_ip):
     # ip header fields
     ip_ihl = 5
     ip_ver = 4
@@ -55,8 +55,7 @@ def build_ip_header(packetid):
     # the ! in the pack format string means network order
     ip_header = pack('!BBHHHBBH4s4s' , ip_ihl_ver, ip_tos, ip_tot_len, ip_id, ip_frag_off, ip_ttl, ip_proto, ip_check, ip_saddr, ip_daddr)
     return ip_header
-def build_ospf_header(packettype, packetlen, checksuma):
-    rid = '172.16.4.2'
+def build_ospf_header(packettype, packetlen, checksuma, rid):
     aid = '0.0.0.0'
     ospf_version = 2
     ospf_type = packettype
@@ -68,16 +67,15 @@ def build_ospf_header(packettype, packetlen, checksuma):
     ospf_auth = 0
     ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth)
     return ospf_header
-def build_ospf_hello_header():
+def build_ospf_hello_header(d_r_ip):
     m = '255.255.255.0'
-    d = '172.16.4.1'
     b = '0.0.0.0'
     mask = ip2int(m)
-    helloint = 10
+    helloint = 3
     options = 2
     priority = 255
-    deadint = 40
-    dr = ip2int(d)
+    deadint = 65000
+    dr = ip2int(d_r_ip)
     bdr = ip2int(b)
     ospf_hello_header = pack('!IHBBIIII', mask, helloint, options, priority, deadint, dr, bdr, dr)
     return ospf_hello_header
@@ -95,18 +93,16 @@ def build_ospf_dbd_header(sequencenumber, dbvalormestre):
     ospf_dbd_header = pack('!HBBI' , mtu,options,dbdescript, ddsequence)
     return ospf_dbd_header
 
-def enviaMensagemHello(packettype, packetlen, sequencenumber):
-    global dest_ip
-    packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_hello_header()
+def enviaMensagemHello(packettype, packetlen, sequencenumber, source_ip, dest_ip, rid):
+    packet = build_ospf_header(packettype, packetlen, 0, rid) + build_ospf_hello_header(dest_ip)
     ck = checksum(packet)
-    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen, ck) + build_ospf_hello_header()
+    packet = build_ip_header(sequencenumber, source_ip, dest_ip) + build_ospf_header(packettype, packetlen, ck, rid) + build_ospf_hello_header(dest_ip)
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
-def enviaMensagemDbd(packettype, packetlen, sequencenumber, dbvalormestre):
-    global dest_ip
-    packet = build_ospf_header(packettype, packetlen, 0) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
+def enviaMensagemDbd(packettype, packetlen, sequencenumber, dbvalormestre, source_ip, dest_ip, rid):
+    packet = build_ospf_header(packettype, packetlen, 0, rid) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
     ck = checksum(packet)
-    packet = build_ip_header(sequencenumber) + build_ospf_header(packettype, packetlen,ck) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
+    packet = build_ip_header(sequencenumber, source_ip, dest_ip) + build_ospf_header(packettype, packetlen,ck, rid) + build_ospf_dbd_header(sequencenumber, dbvalormestre)
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 
@@ -129,7 +125,7 @@ def checksum(msg):
     # beta = s & 0x00ff
     # beta = beta
     # alfa = alfa
-    # s = (beta | alfa) & 0xffff
+    # s = (beta | alfa) & s
     s = swap32(s)
     s = (s >> 16)
     print hex(s)
@@ -143,10 +139,11 @@ def ip2int(addr):
 
 def keepAlive():
     global sqn
-    threading.Timer(10.0, keepAlive).start()
+    threading.Timer(3.0, keepAlive).start()
     print "Sending keep alive"
     sqn = sqn + 1
-    enviaMensagemHello(1, 48, sqn)
+    enviaMensagemHello(1, 48, sqn, '172.16.4.2', '224.0.0.1', '172.16.4.2')
+    enviaMensagemHello(1, 48, sqn, '172.16.7.2', '224.0.0.1', '172.16.4.2')
 
 if __name__ == '__main__':
     begin()

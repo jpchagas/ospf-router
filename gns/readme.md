@@ -15,6 +15,14 @@ Execute the commands below **one at a time**. The variable <**INTERFACE**> shoul
 	sudo iptables -A FORWARD -i tap0 -j ACCEPT
     sudo route add -net 172.16.0.0 netmask 255.255.0.0 tap0
 
+
+
+	sudo tunctl -t tap1
+	sudo ifconfig tap1 172.16.7.2 netmask 255.255.255.252 up
+	sudo iptables -t nat -A POSTROUTING -o <INTERFACE> -j MASQUERADE
+	sudo iptables -A FORWARD -i tap1 -j ACCEPT
+    sudo route add -net 172.16.7.0 netmask 255.255.255.0 tap1
+
 ##### Enabling the interface on reboot
 Execute the command `crontab -e` to open crontab in a text editor.
 
