@@ -13,25 +13,25 @@ sqn = 40000
 def begin():
     global sqn
     print "Enviando Mensagem Hello OSPF"
-    enviaMensagemHello(1, 48, sqn, '172.16.4.2', '172.16.4.1', '172.16.4.2')
-    enviaMensagemHello(1, 48, sqn, '172.16.7.2', '172.16.7.1', '172.16.4.2')
+    enviaMensagemHello(1, 48, sqn, '172.16.4.2', '172.16.4.1', '172.16.8.2', '0.0.0.0')
+    enviaMensagemHello(1, 48, sqn, '172.16.7.2', '172.16.7.1', '172.16.8.2', '0.0.0.0')
     i = 0
     while(i<10):
         sqn  = sqn + 1
         print "Enviando Mensagem DBD OSPF"
         if i==0:
-            enviaMensagemDbd(2, 32 , sqn, 7, '172.16.4.2', '172.16.4.1', '172.16.4.2')
-            enviaMensagemDbd(2, 32 , sqn, 7, '172.16.7.2', '172.16.7.1', '172.16.4.2')
+            enviaMensagemDbd(2, 32 , sqn, 7, '172.16.4.2', '172.16.4.1', '172.16.8.2')
+            enviaMensagemDbd(2, 32 , sqn, 7, '172.16.7.2', '172.16.7.1', '172.16.8.2')
         elif i==9:
-            enviaMensagemDbd(2, 32 , sqn, 1, '172.16.4.2', '172.16.4.1', '172.16.4.2')
-            enviaMensagemDbd(2, 32 , sqn, 1, '172.16.7.2', '172.16.7.1', '172.16.4.2')
+            enviaMensagemDbd(2, 32 , sqn, 1, '172.16.4.2', '172.16.4.1', '172.16.8.2')
+            enviaMensagemDbd(2, 32 , sqn, 1, '172.16.7.2', '172.16.7.1', '172.16.8.2')
         else:
-            enviaMensagemDbd(2, 32 , sqn, 3, '172.16.4.2', '172.16.4.1', '172.16.4.2')
-            enviaMensagemDbd(2, 32 , sqn, 3, '172.16.7.2', '172.16.7.1', '172.16.4.2')
+            enviaMensagemDbd(2, 32 , sqn, 3, '172.16.4.2', '172.16.4.1', '172.16.8.2')
+            enviaMensagemDbd(2, 32 , sqn, 3, '172.16.7.2', '172.16.7.1', '172.16.8.2')
         i+=1
         time.sleep(1)
 
-    # keepAlive()
+    #keepAlive()
 
 	 #enviaMensagemLSAAck()
      #print 'End.\n'
@@ -67,14 +67,13 @@ def build_ospf_header(packettype, packetlen, checksuma, rid):
     ospf_auth = 0
     ospf_header = pack('!BBHIIHHQ' , ospf_version, ospf_type, ospf_len, ospf_routerid, ospf_areaid, ospf_chksum, ospf_authtype, ospf_auth)
     return ospf_header
-def build_ospf_hello_header(d_r_ip):
+def build_ospf_hello_header(d_r_ip, b):
     m = '255.255.255.0'
-    b = '0.0.0.0'
     mask = ip2int(m)
-    helloint = 3
+    helloint = 10
     options = 2
     priority = 255
-    deadint = 65000
+    deadint = 40
     dr = ip2int(d_r_ip)
     bdr = ip2int(b)
     ospf_hello_header = pack('!IHBBIIII', mask, helloint, options, priority, deadint, dr, bdr, dr)
@@ -93,10 +92,10 @@ def build_ospf_dbd_header(sequencenumber, dbvalormestre):
     ospf_dbd_header = pack('!HBBI' , mtu,options,dbdescript, ddsequence)
     return ospf_dbd_header
 
-def enviaMensagemHello(packettype, packetlen, sequencenumber, source_ip, dest_ip, rid):
-    packet = build_ospf_header(packettype, packetlen, 0, rid) + build_ospf_hello_header(dest_ip)
+def enviaMensagemHello(packettype, packetlen, sequencenumber, source_ip, dest_ip, rid, b):
+    packet = build_ospf_header(packettype, packetlen, 0, rid) + build_ospf_hello_header(dest_ip, b)
     ck = checksum(packet)
-    packet = build_ip_header(sequencenumber, source_ip, dest_ip) + build_ospf_header(packettype, packetlen, ck, rid) + build_ospf_hello_header(dest_ip)
+    packet = build_ip_header(sequencenumber, source_ip, dest_ip) + build_ospf_header(packettype, packetlen, ck, rid) + build_ospf_hello_header(dest_ip, b)
     s = socket.socket(socket.AF_INET, socket.SOCK_RAW, socket.IPPROTO_RAW)
     s.sendto(packet, (dest_ip , 0 ))
 def enviaMensagemDbd(packettype, packetlen, sequencenumber, dbvalormestre, source_ip, dest_ip, rid):
@@ -142,8 +141,8 @@ def keepAlive():
     threading.Timer(3.0, keepAlive).start()
     print "Sending keep alive"
     sqn = sqn + 1
-    enviaMensagemHello(1, 48, sqn, '172.16.4.2', '224.0.0.1', '172.16.4.2')
-    enviaMensagemHello(1, 48, sqn, '172.16.7.2', '224.0.0.1', '172.16.4.2')
+    enviaMensagemHello(1, 48, sqn, '172.16.4.2', '224.0.0.5', '172.16.4.2', '172.16.4.2')
+    enviaMensagemHello(1, 48, sqn, '172.16.7.2', '224.0.0.5', '172.16.4.2', '172.16.4.2')
 
 if __name__ == '__main__':
     begin()

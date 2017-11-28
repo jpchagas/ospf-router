@@ -17,37 +17,6 @@
         "links": [
             {
                 "filters": {},
-                "link_id": "8d29cdb5-3feb-41c3-9a34-c9e73a80867f",
-                "nodes": [
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "rotation": 0,
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "e1",
-                            "x": 75,
-                            "y": 16
-                        },
-                        "node_id": "acac05b5-200e-48e1-9ecf-06dd22d2e342",
-                        "port_number": 1
-                    },
-                    {
-                        "adapter_number": 1,
-                        "label": {
-                            "rotation": 0,
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "f1/0",
-                            "x": -6,
-                            "y": 21
-                        },
-                        "node_id": "dfce5235-bff9-4191-850f-3b5aa49716e8",
-                        "port_number": 0
-                    }
-                ],
-                "suspend": false
-            },
-            {
-                "filters": {},
                 "link_id": "2ef83f49-6385-4774-a97f-78263e0955d5",
                 "nodes": [
                     {
@@ -73,37 +42,6 @@
                         },
                         "node_id": "934aa594-d8b4-4b8f-a0f2-f4cfa46ef809",
                         "port_number": 0
-                    }
-                ],
-                "suspend": false
-            },
-            {
-                "filters": {},
-                "link_id": "270b561b-6963-400b-bcc7-c4aa16f0baad",
-                "nodes": [
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "rotation": 0,
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "tap1",
-                            "x": 34,
-                            "y": 69
-                        },
-                        "node_id": "df1b13eb-3c20-42fb-aeaf-94cc45cae053",
-                        "port_number": 1
-                    },
-                    {
-                        "adapter_number": 0,
-                        "label": {
-                            "rotation": 0,
-                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "f0/1",
-                            "x": 30,
-                            "y": -17
-                        },
-                        "node_id": "503efaf9-696e-4a9a-98dd-c8ed9ef45ce3",
-                        "port_number": 1
                     }
                 ],
                 "suspend": false
@@ -141,18 +79,18 @@
             },
             {
                 "filters": {},
-                "link_id": "b66af7b7-271d-40ee-9e45-05130d368e91",
+                "link_id": "5b1528ae-11b4-45df-9f7e-046770e89d8e",
                 "nodes": [
                     {
                         "adapter_number": 0,
                         "label": {
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "e0",
-                            "x": 32,
-                            "y": -10
+                            "text": "f0/0",
+                            "x": 73,
+                            "y": 22
                         },
-                        "node_id": "515f348d-b204-4831-990e-4c41887b0340",
+                        "node_id": "dfce5235-bff9-4191-850f-3b5aa49716e8",
                         "port_number": 0
                     },
                     {
@@ -160,12 +98,12 @@
                         "label": {
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "e2",
-                            "x": 35,
-                            "y": 56
+                            "text": "e0",
+                            "x": -4,
+                            "y": 16
                         },
-                        "node_id": "acac05b5-200e-48e1-9ecf-06dd22d2e342",
-                        "port_number": 2
+                        "node_id": "7d69f2e3-79e5-4980-97cb-535b8cb131f2",
+                        "port_number": 0
                     }
                 ],
                 "suspend": false
@@ -203,18 +141,18 @@
             },
             {
                 "filters": {},
-                "link_id": "0268ee78-07c6-45f1-be8b-945804407ddc",
+                "link_id": "b66af7b7-271d-40ee-9e45-05130d368e91",
                 "nodes": [
                     {
                         "adapter_number": 0,
                         "label": {
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "tap0",
-                            "x": 18,
-                            "y": 67
+                            "text": "e0",
+                            "x": 32,
+                            "y": -10
                         },
-                        "node_id": "3dd12695-dc5a-4309-902b-129d1e163614",
+                        "node_id": "515f348d-b204-4831-990e-4c41887b0340",
                         "port_number": 0
                     },
                     {
@@ -222,12 +160,12 @@
                         "label": {
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "f0/1",
-                            "x": 46,
-                            "y": -15
+                            "text": "e2",
+                            "x": 35,
+                            "y": 56
                         },
-                        "node_id": "3ba0ca36-7281-4a0a-b8fc-4a8e13732798",
-                        "port_number": 1
+                        "node_id": "acac05b5-200e-48e1-9ecf-06dd22d2e342",
+                        "port_number": 2
                     }
                 ],
                 "suspend": false
@@ -296,18 +234,18 @@
             },
             {
                 "filters": {},
-                "link_id": "5b1528ae-11b4-45df-9f7e-046770e89d8e",
+                "link_id": "0268ee78-07c6-45f1-be8b-945804407ddc",
                 "nodes": [
                     {
                         "adapter_number": 0,
                         "label": {
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "f0/0",
-                            "x": 73,
-                            "y": 22
+                            "text": "tap0",
+                            "x": 18,
+                            "y": 67
                         },
-                        "node_id": "dfce5235-bff9-4191-850f-3b5aa49716e8",
+                        "node_id": "3dd12695-dc5a-4309-902b-129d1e163614",
                         "port_number": 0
                     },
                     {
@@ -315,146 +253,80 @@
                         "label": {
                             "rotation": 0,
                             "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                            "text": "e0",
-                            "x": -4,
+                            "text": "f0/1",
+                            "x": 46,
+                            "y": -15
+                        },
+                        "node_id": "3ba0ca36-7281-4a0a-b8fc-4a8e13732798",
+                        "port_number": 1
+                    }
+                ],
+                "suspend": false
+            },
+            {
+                "filters": {},
+                "link_id": "8d29cdb5-3feb-41c3-9a34-c9e73a80867f",
+                "nodes": [
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "e1",
+                            "x": 75,
                             "y": 16
                         },
-                        "node_id": "7d69f2e3-79e5-4980-97cb-535b8cb131f2",
+                        "node_id": "acac05b5-200e-48e1-9ecf-06dd22d2e342",
+                        "port_number": 1
+                    },
+                    {
+                        "adapter_number": 1,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "f1/0",
+                            "x": -6,
+                            "y": 21
+                        },
+                        "node_id": "dfce5235-bff9-4191-850f-3b5aa49716e8",
                         "port_number": 0
+                    }
+                ],
+                "suspend": false
+            },
+            {
+                "filters": {},
+                "link_id": "270b561b-6963-400b-bcc7-c4aa16f0baad",
+                "nodes": [
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "tap1",
+                            "x": 34,
+                            "y": 69
+                        },
+                        "node_id": "df1b13eb-3c20-42fb-aeaf-94cc45cae053",
+                        "port_number": 1
+                    },
+                    {
+                        "adapter_number": 0,
+                        "label": {
+                            "rotation": 0,
+                            "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                            "text": "f0/1",
+                            "x": 30,
+                            "y": -17
+                        },
+                        "node_id": "503efaf9-696e-4a9a-98dd-c8ed9ef45ce3",
+                        "port_number": 1
                     }
                 ],
                 "suspend": false
             }
         ],
         "nodes": [
-            {
-                "compute_id": "local",
-                "console": 5011,
-                "console_type": "telnet",
-                "first_port_name": null,
-                "height": 45,
-                "label": {
-                    "rotation": 0,
-                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "R2",
-                    "x": 19,
-                    "y": -25
-                },
-                "name": "R2",
-                "node_id": "3ba0ca36-7281-4a0a-b8fc-4a8e13732798",
-                "node_type": "dynamips",
-                "port_name_format": "Ethernet{0}",
-                "port_segment_size": 0,
-                "properties": {
-                    "auto_delete_disks": true,
-                    "aux": null,
-                    "clock_divisor": 8,
-                    "disk0": 0,
-                    "disk1": 0,
-                    "dynamips_id": 2,
-                    "exec_area": 64,
-                    "idlemax": 500,
-                    "idlepc": "",
-                    "idlesleep": 30,
-                    "image": "c3725-adventerprisek9-mz124-15.image",
-                    "image_md5sum": "1c950444f3261338c3d42e72a6ded980",
-                    "iomem": 5,
-                    "mac_addr": "c202.21e8.0000",
-                    "mmap": true,
-                    "nvram": 256,
-                    "platform": "c3725",
-                    "ram": 128,
-                    "slot0": "GT96100-FE",
-                    "slot1": "NM-1FE-TX",
-                    "slot2": "NM-1FE-TX",
-                    "sparsemem": true,
-                    "system_id": "FTX0945W0MY",
-                    "wic0": null,
-                    "wic1": null,
-                    "wic2": null
-                },
-                "symbol": ":/symbols/router.svg",
-                "width": 66,
-                "x": 303,
-                "y": -15,
-                "z": 1
-            },
-            {
-                "compute_id": "local",
-                "console": 5009,
-                "console_type": "telnet",
-                "first_port_name": null,
-                "height": 32,
-                "label": {
-                    "rotation": 0,
-                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Ethernetswitch-1",
-                    "x": -31,
-                    "y": -25
-                },
-                "name": "Ethernetswitch-1",
-                "node_id": "acac05b5-200e-48e1-9ecf-06dd22d2e342",
-                "node_type": "ethernet_switch",
-                "port_name_format": "Ethernet{0}",
-                "port_segment_size": 0,
-                "properties": {
-                    "ports_mapping": [
-                        {
-                            "name": "Ethernet0",
-                            "port_number": 0,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet1",
-                            "port_number": 1,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet2",
-                            "port_number": 2,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet3",
-                            "port_number": 3,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet4",
-                            "port_number": 4,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet5",
-                            "port_number": 5,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet6",
-                            "port_number": 6,
-                            "type": "access",
-                            "vlan": 1
-                        },
-                        {
-                            "name": "Ethernet7",
-                            "port_number": 7,
-                            "type": "access",
-                            "vlan": 1
-                        }
-                    ]
-                },
-                "symbol": ":/symbols/ethernet_switch.svg",
-                "width": 72,
-                "x": -187,
-                "y": -10,
-                "z": 0
-            },
             {
                 "compute_id": "local",
                 "console": 5014,
@@ -504,33 +376,8 @@
                 "symbol": ":/symbols/router.svg",
                 "width": 66,
                 "x": -535,
-                "y": -13,
+                "y": -15,
                 "z": 0
-            },
-            {
-                "compute_id": "local",
-                "console": 5006,
-                "console_type": "telnet",
-                "first_port_name": null,
-                "height": 59,
-                "label": {
-                    "rotation": 0,
-                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "PC3",
-                    "x": 14,
-                    "y": -25
-                },
-                "name": "PC3",
-                "node_id": "934aa594-d8b4-4b8f-a0f2-f4cfa46ef809",
-                "node_type": "vpcs",
-                "port_name_format": "Ethernet{0}",
-                "port_segment_size": 0,
-                "properties": {},
-                "symbol": ":/symbols/vpcs_guest.svg",
-                "width": 65,
-                "x": -2,
-                "y": 143,
-                "z": 1
             },
             {
                 "compute_id": "local",
@@ -559,59 +406,155 @@
             },
             {
                 "compute_id": "local",
-                "console": 5010,
-                "console_type": "telnet",
+                "console": null,
+                "console_type": null,
                 "first_port_name": null,
-                "height": 45,
+                "height": 59,
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "R1",
-                    "x": 19,
+                    "text": "Cloud-1",
+                    "x": 2,
                     "y": -25
                 },
-                "name": "R1",
-                "node_id": "dfce5235-bff9-4191-850f-3b5aa49716e8",
-                "node_type": "dynamips",
+                "name": "Cloud-1",
+                "node_id": "df1b13eb-3c20-42fb-aeaf-94cc45cae053",
+                "node_type": "cloud",
                 "port_name_format": "Ethernet{0}",
                 "port_segment_size": 0,
                 "properties": {
-                    "auto_delete_disks": true,
-                    "aux": null,
-                    "clock_divisor": 8,
-                    "disk0": 0,
-                    "disk1": 0,
-                    "dynamips_id": 1,
-                    "exec_area": 64,
-                    "idlemax": 500,
-                    "idlepc": "",
-                    "idlesleep": 30,
-                    "image": "c3725-adventerprisek9-mz124-15.image",
-                    "image_md5sum": "1c950444f3261338c3d42e72a6ded980",
-                    "iomem": 5,
-                    "mac_addr": "c201.21d9.0000",
-                    "mmap": true,
-                    "nvram": 256,
-                    "platform": "c3725",
-                    "ram": 128,
-                    "slot0": "GT96100-FE",
-                    "slot1": "NM-1FE-TX",
-                    "slot2": "NM-1FE-TX",
-                    "sparsemem": true,
-                    "system_id": "FTX0945W0MY",
-                    "wic0": null,
-                    "wic1": null,
-                    "wic2": null
+                    "interfaces": [
+                        {
+                            "name": "enp3s0",
+                            "special": false,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "lo",
+                            "special": true,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "tap0",
+                            "special": false,
+                            "type": "tap"
+                        },
+                        {
+                            "name": "tap1",
+                            "special": false,
+                            "type": "tap"
+                        },
+                        {
+                            "name": "virbr0",
+                            "special": true,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "virbr0-nic",
+                            "special": true,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "wlp2s0",
+                            "special": false,
+                            "type": "ethernet"
+                        }
+                    ],
+                    "ports_mapping": [
+                        {
+                            "interface": "tap0",
+                            "name": "tap0",
+                            "port_number": 0,
+                            "type": "tap"
+                        },
+                        {
+                            "interface": "tap1",
+                            "name": "tap1",
+                            "port_number": 1,
+                            "type": "tap"
+                        }
+                    ]
                 },
-                "symbol": ":/symbols/router.svg",
-                "width": 66,
-                "x": -7,
-                "y": -17,
-                "z": 1
+                "symbol": ":/symbols/computer.svg",
+                "width": 65,
+                "x": -531,
+                "y": -188,
+                "z": 0
             },
             {
                 "compute_id": "local",
-                "console": 5002,
+                "console": null,
+                "console_type": null,
+                "first_port_name": null,
+                "height": 59,
+                "label": {
+                    "rotation": 0,
+                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                    "text": "Host",
+                    "x": 11,
+                    "y": -25
+                },
+                "name": "Host",
+                "node_id": "3dd12695-dc5a-4309-902b-129d1e163614",
+                "node_type": "cloud",
+                "port_name_format": "Ethernet{0}",
+                "port_segment_size": 0,
+                "properties": {
+                    "interfaces": [
+                        {
+                            "name": "enp3s0",
+                            "special": false,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "lo",
+                            "special": true,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "tap0",
+                            "special": false,
+                            "type": "tap"
+                        },
+                        {
+                            "name": "tap1",
+                            "special": false,
+                            "type": "tap"
+                        },
+                        {
+                            "name": "virbr0",
+                            "special": true,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "virbr0-nic",
+                            "special": true,
+                            "type": "ethernet"
+                        },
+                        {
+                            "name": "wlp2s0",
+                            "special": false,
+                            "type": "ethernet"
+                        }
+                    ],
+                    "ports_mapping": [
+                        {
+                            "interface": "tap0",
+                            "name": "tap0",
+                            "port_number": 0,
+                            "type": "tap"
+                        }
+                    ]
+                },
+                "symbol": ":/symbols/computer.svg",
+                "width": 65,
+                "x": 303,
+                "y": -197,
+                "z": 0
+            },
+            {
+                "compute_id": "local",
+                "console": 5001,
                 "console_type": "telnet",
                 "first_port_name": null,
                 "height": 32,
@@ -764,151 +707,208 @@
             },
             {
                 "compute_id": "local",
-                "console": null,
-                "console_type": null,
+                "console": 5004,
+                "console_type": "telnet",
                 "first_port_name": null,
-                "height": 59,
+                "height": 32,
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Cloud-1",
-                    "x": 2,
+                    "text": "Ethernetswitch-1",
+                    "x": -31,
                     "y": -25
                 },
-                "name": "Cloud-1",
-                "node_id": "df1b13eb-3c20-42fb-aeaf-94cc45cae053",
-                "node_type": "cloud",
+                "name": "Ethernetswitch-1",
+                "node_id": "acac05b5-200e-48e1-9ecf-06dd22d2e342",
+                "node_type": "ethernet_switch",
                 "port_name_format": "Ethernet{0}",
                 "port_segment_size": 0,
                 "properties": {
-                    "interfaces": [
-                        {
-                            "name": "enp6s0",
-                            "special": false,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "lo",
-                            "special": true,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "tap0",
-                            "special": false,
-                            "type": "tap"
-                        },
-                        {
-                            "name": "tap1",
-                            "special": false,
-                            "type": "tap"
-                        },
-                        {
-                            "name": "virbr0",
-                            "special": true,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "virbr0-nic",
-                            "special": true,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "wlp3s0",
-                            "special": false,
-                            "type": "ethernet"
-                        }
-                    ],
                     "ports_mapping": [
                         {
-                            "interface": "tap0",
-                            "name": "tap0",
+                            "name": "Ethernet0",
                             "port_number": 0,
-                            "type": "tap"
+                            "type": "access",
+                            "vlan": 1
                         },
                         {
-                            "interface": "tap1",
-                            "name": "tap1",
+                            "name": "Ethernet1",
                             "port_number": 1,
-                            "type": "tap"
+                            "type": "access",
+                            "vlan": 1
+                        },
+                        {
+                            "name": "Ethernet2",
+                            "port_number": 2,
+                            "type": "access",
+                            "vlan": 1
+                        },
+                        {
+                            "name": "Ethernet3",
+                            "port_number": 3,
+                            "type": "access",
+                            "vlan": 1
+                        },
+                        {
+                            "name": "Ethernet4",
+                            "port_number": 4,
+                            "type": "access",
+                            "vlan": 1
+                        },
+                        {
+                            "name": "Ethernet5",
+                            "port_number": 5,
+                            "type": "access",
+                            "vlan": 1
+                        },
+                        {
+                            "name": "Ethernet6",
+                            "port_number": 6,
+                            "type": "access",
+                            "vlan": 1
+                        },
+                        {
+                            "name": "Ethernet7",
+                            "port_number": 7,
+                            "type": "access",
+                            "vlan": 1
                         }
                     ]
                 },
-                "symbol": ":/symbols/computer.svg",
-                "width": 65,
-                "x": -531,
-                "y": -188,
+                "symbol": ":/symbols/ethernet_switch.svg",
+                "width": 72,
+                "x": -187,
+                "y": -10,
                 "z": 0
             },
             {
                 "compute_id": "local",
-                "console": null,
-                "console_type": null,
+                "console": 5010,
+                "console_type": "telnet",
+                "first_port_name": null,
+                "height": 45,
+                "label": {
+                    "rotation": 0,
+                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                    "text": "R1",
+                    "x": 19,
+                    "y": -25
+                },
+                "name": "R1",
+                "node_id": "dfce5235-bff9-4191-850f-3b5aa49716e8",
+                "node_type": "dynamips",
+                "port_name_format": "Ethernet{0}",
+                "port_segment_size": 0,
+                "properties": {
+                    "auto_delete_disks": true,
+                    "aux": null,
+                    "clock_divisor": 8,
+                    "disk0": 0,
+                    "disk1": 0,
+                    "dynamips_id": 1,
+                    "exec_area": 64,
+                    "idlemax": 500,
+                    "idlepc": "",
+                    "idlesleep": 30,
+                    "image": "c3725-adventerprisek9-mz124-15.image",
+                    "image_md5sum": "1c950444f3261338c3d42e72a6ded980",
+                    "iomem": 5,
+                    "mac_addr": "c201.21d9.0000",
+                    "mmap": true,
+                    "nvram": 256,
+                    "platform": "c3725",
+                    "ram": 128,
+                    "slot0": "GT96100-FE",
+                    "slot1": "NM-1FE-TX",
+                    "slot2": "NM-1FE-TX",
+                    "sparsemem": true,
+                    "system_id": "FTX0945W0MY",
+                    "wic0": null,
+                    "wic1": null,
+                    "wic2": null
+                },
+                "symbol": ":/symbols/router.svg",
+                "width": 66,
+                "x": -7,
+                "y": -17,
+                "z": 1
+            },
+            {
+                "compute_id": "local",
+                "console": 5006,
+                "console_type": "telnet",
                 "first_port_name": null,
                 "height": 59,
                 "label": {
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "Host",
-                    "x": 11,
+                    "text": "PC3",
+                    "x": 14,
                     "y": -25
                 },
-                "name": "Host",
-                "node_id": "3dd12695-dc5a-4309-902b-129d1e163614",
-                "node_type": "cloud",
+                "name": "PC3",
+                "node_id": "934aa594-d8b4-4b8f-a0f2-f4cfa46ef809",
+                "node_type": "vpcs",
+                "port_name_format": "Ethernet{0}",
+                "port_segment_size": 0,
+                "properties": {},
+                "symbol": ":/symbols/vpcs_guest.svg",
+                "width": 65,
+                "x": -2,
+                "y": 143,
+                "z": 1
+            },
+            {
+                "compute_id": "local",
+                "console": 5011,
+                "console_type": "telnet",
+                "first_port_name": null,
+                "height": 45,
+                "label": {
+                    "rotation": 0,
+                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
+                    "text": "R2",
+                    "x": 19,
+                    "y": -25
+                },
+                "name": "R2",
+                "node_id": "3ba0ca36-7281-4a0a-b8fc-4a8e13732798",
+                "node_type": "dynamips",
                 "port_name_format": "Ethernet{0}",
                 "port_segment_size": 0,
                 "properties": {
-                    "interfaces": [
-                        {
-                            "name": "enp6s0",
-                            "special": false,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "lo",
-                            "special": true,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "tap0",
-                            "special": false,
-                            "type": "tap"
-                        },
-                        {
-                            "name": "tap1",
-                            "special": false,
-                            "type": "tap"
-                        },
-                        {
-                            "name": "virbr0",
-                            "special": true,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "virbr0-nic",
-                            "special": true,
-                            "type": "ethernet"
-                        },
-                        {
-                            "name": "wlp3s0",
-                            "special": false,
-                            "type": "ethernet"
-                        }
-                    ],
-                    "ports_mapping": [
-                        {
-                            "interface": "tap0",
-                            "name": "tap0",
-                            "port_number": 0,
-                            "type": "tap"
-                        }
-                    ]
+                    "auto_delete_disks": true,
+                    "aux": null,
+                    "clock_divisor": 8,
+                    "disk0": 0,
+                    "disk1": 0,
+                    "dynamips_id": 2,
+                    "exec_area": 64,
+                    "idlemax": 500,
+                    "idlepc": "",
+                    "idlesleep": 30,
+                    "image": "c3725-adventerprisek9-mz124-15.image",
+                    "image_md5sum": "1c950444f3261338c3d42e72a6ded980",
+                    "iomem": 5,
+                    "mac_addr": "c202.21e8.0000",
+                    "mmap": true,
+                    "nvram": 256,
+                    "platform": "c3725",
+                    "ram": 128,
+                    "slot0": "GT96100-FE",
+                    "slot1": "NM-1FE-TX",
+                    "slot2": "NM-1FE-TX",
+                    "sparsemem": true,
+                    "system_id": "FTX0945W0MY",
+                    "wic0": null,
+                    "wic1": null,
+                    "wic2": null
                 },
-                "symbol": ":/symbols/computer.svg",
-                "width": 65,
+                "symbol": ":/symbols/router.svg",
+                "width": 66,
                 "x": 303,
-                "y": -197,
-                "z": 0
+                "y": -16,
+                "z": 1
             }
         ]
     },
